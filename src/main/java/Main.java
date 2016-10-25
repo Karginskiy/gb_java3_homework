@@ -1,5 +1,13 @@
 import java.util.*;
 
+/**
+ * @author Kargin Nikita
+ * Geekbrains.ru
+ * Homework for lesson 1.
+ * @since 1.8
+ *
+ */
+
 public class Main {
 
     public static void main(String[] args) {
@@ -38,5 +46,4 @@ public class Main {
         System.out.println(apples1);
 
     }
-
 }
