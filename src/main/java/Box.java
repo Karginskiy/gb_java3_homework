@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
-class Box<T extends Fruit> implements Iterable<T> {
+class Box<T extends AbstractFruit> implements Iterable<T> {
 
     private final ArrayList<T> list = new ArrayList<T>();
 
