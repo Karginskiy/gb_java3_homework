@@ -1,8 +1,8 @@
-abstract class Fruit {
+abstract class AbstractFruit {
 
     private float weight;
 
-    Fruit(float weight) {
+    AbstractFruit(float weight) {
         this.weight = weight;
     }
 
