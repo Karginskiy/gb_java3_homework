@@ -1,3 +1,5 @@
+package lesson1;
+
 abstract class AbstractFruit {
 
     private float weight;
