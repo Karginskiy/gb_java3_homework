@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Connector {
+class Connector {
 
     private Connection connection;
     private String dbPath;
@@ -13,7 +13,7 @@ public class Connector {
         this.dbPath = dbPath;
     }
 
-    public void connect() {
+    void connect() {
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection(dbPath);
@@ -23,7 +23,7 @@ public class Connector {
         }
     }
 
-    public void disconnect() {
+    void disconnect() {
         try {
             connection.close();
         } catch (SQLException e) {
@@ -31,7 +31,7 @@ public class Connector {
         }
     }
 
-    public Connection getConnection() {
+    Connection getConnection() {
         return this.connection;
     }
 
