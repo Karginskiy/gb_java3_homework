@@ -1,13 +1,12 @@
 package lesson2;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.Iterator;
 
 import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 
-public class FileParser {
+class FileParser {
 
     private final Path path;
 
@@ -15,7 +14,7 @@ public class FileParser {
         this.path = Paths.get(path);
     }
 
-    public ProductSet parse() {
+    ProductSet parse() {
 
         ProductSet productSet = new ProductSet();
 
@@ -45,7 +44,7 @@ public class FileParser {
 
     }
 
-    public void watchForChanges() {
+    void watchForChanges() {
 
         System.out.println("Waiting for changes at " + path.getFileName());
 
