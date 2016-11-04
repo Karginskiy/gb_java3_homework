@@ -5,17 +5,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class QueryController {
+class QueryController {
 
-    Connector connector;
-    PreparedStatement statement;
+    private Connector connector;
+    private PreparedStatement statement;
 
     QueryController(Connector connector) {
         this.connector = connector;
     }
 
 
-    public ProductSet getProducts() {
+    ProductSet getProducts() {
 
         ProductSet products = new ProductSet();
 
@@ -49,7 +49,7 @@ public class QueryController {
 
     }
 
-    public void openBatch() {
+    void openBatch() {
         connector.connect();
         try {
             statement = connector.getConnection()
@@ -60,7 +60,7 @@ public class QueryController {
         }
     }
 
-    public void addProduct(Product product) {
+    void addProduct(Product product) {
 
         try {
 
@@ -83,7 +83,7 @@ public class QueryController {
 
     }
 
-    public void executeBatch() {
+    void executeBatch() {
 
         if (statement != null) {
             try {
@@ -111,33 +111,48 @@ public class QueryController {
 
     }
 
-    public void updateProduct(String fullName, Product product) {
+    public int updateProducts(ProductSet set) {
 
-        connector.connect();
+        if (set == null) {
+            return 0;
+        }
+
         try {
-            PreparedStatement statement = connector.getConnection().prepareStatement("UPDATE products SET group1 = ?, group2 = ?, group3 = ?, " +
-                    "group4 = ?, group5 = ?, short_name = ?, code = ?, articul = ?, full_name = ?, price = ? WHERE full_name = ?");
-            statement.setString(1, product.getGroup1());
-            statement.setString(2, product.getGroup2());
-            statement.setString(3, product.getGroup3());
-            statement.setString(4, product.getGroup4());
-            statement.setString(5, product.getGroup5());
-            statement.setString(6, product.getShortName());
-            statement.setLong(7, product.getCode());
-            statement.setString(8, product.getArticul());
-            statement.setString(9, product.getFullName());
-            statement.setInt(10, product.getPrice());
-            statement.setString(11, fullName);
 
-            statement.executeUpdate();
-            System.out.println("Updated " + statement.getUpdateCount() + " element.");
+            connector.connect();
+
+            PreparedStatement statement = statement = connector.getConnection().prepareStatement("UPDATE products SET group1 = ?, group2 = ?, group3 = ?, " +
+                    "group4 = ?, group5 = ?, short_name = ?, code = ?, articul = ?, full_name = ?, price = ? WHERE id = ?");
+
+
+            for (Product product : set) {
+
+                statement.setString(1, product.getGroup1());
+                statement.setString(2, product.getGroup2());
+                statement.setString(3, product.getGroup3());
+                statement.setString(4, product.getGroup4());
+                statement.setString(5, product.getGroup5());
+                statement.setString(6, product.getShortName());
+                statement.setLong(7, product.getCode());
+                statement.setString(8, product.getArticul());
+                statement.setString(9, product.getFullName());
+                statement.setInt(10, product.getPrice());
+                statement.setInt(11, product.getId());
+
+                statement.addBatch();
+            }
+
+            statement.executeBatch();
             connector.getConnection().commit();
+
 
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             connector.disconnect();
         }
+
+        return set.size();
 
     }
 
