@@ -5,12 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-class QueryController {
+class ProductService {
 
     private Connector connector;
     private PreparedStatement statement;
 
-    QueryController(Connector connector) {
+    ProductService(Connector connector) {
         this.connector = connector;
     }
 
