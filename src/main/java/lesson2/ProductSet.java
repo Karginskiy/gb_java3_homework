@@ -39,7 +39,6 @@ class ProductSet implements Iterable<Product> {
                 Product product = products.get(i);
                 product.setId(setFromDb.get(i).getId());
                 productsSet.add(product);
-                System.out.println("Changed item - " + product);
             }
         }
 
