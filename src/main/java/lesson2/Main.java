@@ -6,21 +6,38 @@ public class Main {
 
         FileParser fileParser = new FileParser("E:\\Projects\\gb_java3_homework\\src\\main\\java\\lesson2\\files\\List.csv");
         ProductSet productSet = fileParser.parse();
-        QueryController controller = new QueryController(new Connector(
+        ProductService service = new ProductService(new Connector(
                 "jdbc:sqlite:src\\main\\java\\lesson2\\files\\lesson3.db"));
 
-        controller.openBatch();
-        productSet.forEach(controller::addProduct);
+        service.cleanDatabase();
+        System.out.println("Cleaning database..");
 
-        controller.executeBatch();
+        System.out.println();
 
-        ProductSet productsInDB = controller.getProducts();
+        service.openBatch();
+        productSet.forEach(service::addProduct);
+        service.executeBatch();
+        System.out.println("Added elements from file to the database.");
+
+        System.out.println();
+
+        ProductSet productsInDB = service.getProducts();
+        System.out.println("Getting elements from dataBase.");
 
         fileParser.watchForChanges();
-        ProductSet set = fileParser.parse();
-        ProductSet changedSet = set.getChangedSet(productsInDB);
+        System.out.println();
 
-        int updateCount = controller.updateProducts(changedSet);
+        ProductSet set = fileParser.parse();
+        System.out.println("Getting files from updated file");
+        ProductSet changedSet = set.getChangedSet(productsInDB);
+        System.out.println("Comparing the elements from updated file and database");
+
+        System.out.println();
+
+        System.out.println("Changed elements: ");
+        changedSet.forEach(System.out::println);
+
+        int updateCount = service.updateProducts(changedSet);
         System.out.println("Updated lines - " + updateCount);
 
     }
