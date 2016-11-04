@@ -3,6 +3,7 @@ package lesson2;
 class Product {
 
     private int id;
+
     private String group1 = "";
     private String group2 = "";
     private String group3 = "";
@@ -29,48 +30,52 @@ class Product {
         this.articul = productBuilder.articul;
     }
 
-    public String getGroup1() {
+    String getGroup1() {
         return group1;
     }
 
-    public String getGroup2() {
+    String getGroup2() {
         return group2;
     }
 
-    public String getGroup3() {
+    String getGroup3() {
         return group3;
     }
 
-    public String getGroup4() {
+    String getGroup4() {
         return group4;
     }
 
-    public String getGroup5() {
+    String getGroup5() {
         return group5;
     }
 
-    public String getShortName() {
+    String getShortName() {
         return shortName;
     }
 
-    public long getCode() {
+    long getCode() {
         return code;
     }
 
-    public String getArticul() {
+    String getArticul() {
         return articul;
     }
 
-    public String getFullName() {
+    String getFullName() {
         return fullName;
     }
 
-    public int getPrice() {
+    int getPrice() {
         return price;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -88,7 +93,6 @@ class Product {
 
         Product product = (Product) o;
 
-        if (id != product.id) return false;
         if (code != product.code) return false;
         if (price != product.price) return false;
         if (group1 != null ? !group1.equals(product.group1) : product.group1 != null) return false;
@@ -118,7 +122,8 @@ class Product {
         return result;
     }
 
-    public static class ProductBuilder {
+
+    static class ProductBuilder {
 
         private int id;
 
@@ -134,62 +139,62 @@ class Product {
         private String fullName = "";
         private int price;
 
-        public ProductBuilder group1(String group1) {
+        ProductBuilder group1(String group1) {
             this.group1 = group1;
             return this;
         }
 
-        public ProductBuilder group2(String group2) {
+        ProductBuilder group2(String group2) {
             this.group2 = group2;
             return this;
         }
 
-        public ProductBuilder group3(String group3) {
+        ProductBuilder group3(String group3) {
             this.group3 = group3;
             return this;
         }
 
-        public ProductBuilder group4(String group4) {
+        ProductBuilder group4(String group4) {
             this.group4 = group4;
             return this;
         }
 
-        public ProductBuilder group5(String group5) {
+        ProductBuilder group5(String group5) {
             this.group5 = group5;
             return this;
         }
 
-        public ProductBuilder shortName(String shortName) {
+        ProductBuilder shortName(String shortName) {
             this.shortName = shortName;
             return this;
         }
 
-        public ProductBuilder code(long code) {
+        ProductBuilder code(long code) {
             this.code = code;
             return this;
         }
 
-        public ProductBuilder articul(String articul) {
+        ProductBuilder articul(String articul) {
             this.articul = articul;
             return this;
         }
 
-        public ProductBuilder fullName(String fullName) {
+        ProductBuilder fullName(String fullName) {
             this.fullName = fullName;
             return this;
         }
 
-        public ProductBuilder price(int price) {
+        ProductBuilder price(int price) {
             this.price = price;
             return this;
         }
 
-        public ProductBuilder id(int id) {
+        ProductBuilder id(int id) {
             this.id = id;
             return this;
         }
 
-        public Product build() {
+        Product build() {
             return new Product(this);
         }
 
