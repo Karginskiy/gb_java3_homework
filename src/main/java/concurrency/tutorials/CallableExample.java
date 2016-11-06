@@ -1,4 +1,4 @@
-package concurrency;
+package concurrency.tutorials;
 
 import java.util.concurrent.*;
 

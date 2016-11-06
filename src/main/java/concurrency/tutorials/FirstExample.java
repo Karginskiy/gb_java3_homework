@@ -1,4 +1,4 @@
-package concurrency;
+package concurrency.tutorials;
 
 public class FirstExample {
 

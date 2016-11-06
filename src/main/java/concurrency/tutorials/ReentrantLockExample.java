@@ -1,11 +1,11 @@
-package concurrency;
+package concurrency.tutorials;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.locks.ReentrantLock;
 
-import static concurrency.ConcurrentUtils.sleep;
-import static concurrency.ConcurrentUtils.stop;
+import static concurrency.tutorials.ConcurrentUtils.sleep;
+import static concurrency.tutorials.ConcurrentUtils.stop;
 
 public class ReentrantLockExample {
 
